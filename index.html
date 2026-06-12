@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RetroRPM Projektübersicht und Script-Dokumentation">
+  <title>RetroRPM | Project Hub</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="RetroRPM Startseite">
+      <span class="brand-mark">R</span>
+      <span>
+        <strong>RetroRPM</strong>
+        <small>PROJECT HUB</small>
+      </span>
+    </a>
+
+    <nav class="topnav" aria-label="Hauptnavigation">
+      <a href="#overview">Übersicht</a>
+      <a href="#systems">Systeme</a>
+      <a href="#traffic">Traffic Spawner</a>
+    </nav>
+
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      UNITY 6
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow">ARCADE RACING DOCUMENTATION</p>
+        <h1>Verstehe dein Spiel.<br><span>System für System.</span></h1>
+        <p class="hero-copy">
+          Eine kompakte Übersicht über RetroRPM, seine wichtigsten Manager,
+          die Rennlogik und den Verkehr auf der Strecke.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#traffic">TrafficSpawner ansehen</a>
+          <a class="button button-secondary" href="#systems">Alle Systeme</a>
+        </div>
+      </div>
+
+      <div class="hero-stats" aria-label="Projektstatistiken">
+        <article>
+          <span>03</span>
+          <p>FAHRZEUGE</p>
+        </article>
+        <article>
+          <span>02</span>
+          <p>FAHRSPUREN</p>
+        </article>
+        <article>
+          <span>∞</span>
+          <p>HIGHWAY</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section overview-section" id="overview">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">GAME LOOP</p>
+          <h2>So hängt alles zusammen</h2>
+        </div>
+        <p>Vom Hauptmenü bis zur immer schneller werdenden Rennstrecke.</p>
+      </div>
+
+      <div class="game-loop">
+        <article class="loop-card">
+          <span class="step-number">01</span>
+          <div class="step-icon">MENU</div>
+          <h3>Main Menu</h3>
+          <p>Spiel starten, Audio einstellen oder den gespeicherten Fortschritt zurücksetzen.</p>
+        </article>
+        <span class="loop-arrow">→</span>
+        <article class="loop-card">
+          <span class="step-number">02</span>
+          <div class="step-icon">SHOP</div>
+          <h3>Lobby</h3>
+          <p>Autos kaufen, auswählen und mit Speed-, Beschleunigungs- und Handling-Upgrades verbessern.</p>
+        </article>
+        <span class="loop-arrow">→</span>
+        <article class="loop-card">
+          <span class="step-number">03</span>
+          <div class="step-icon">RACE</div>
+          <h3>Race</h3>
+          <p>Verkehr ausweichen, Geld sammeln, Buffs nutzen und möglichst weit fahren.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section systems-section" id="systems">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">CODE MAP</p>
+          <h2>Zentrale Systeme</h2>
+        </div>
+        <label class="search">
+          <span aria-hidden="true">⌕</span>
+          <input id="systemSearch" type="search" placeholder="Script suchen..." autocomplete="off">
+        </label>
+      </div>
+
+      <div class="system-grid" id="systemGrid">
+        <article class="system-card cyan" data-search="game manager spielstand autos selected ownership">
+          <div class="card-top"><span>CORE</span><code>GameManager.cs</code></div>
+          <h3>Spielstand & Autos</h3>
+          <p>Speichert das ausgewählte Fahrzeug, verwaltet gekaufte Autos und hält zentrale Daten über Szenen hinweg.</p>
+          <div class="tag-row"><span>PlayerPrefs</span><span>Singleton</span></div>
+        </article>
+
+        <article class="system-card magenta" data-search="money manager geld kaufen ausgeben reset">
+          <div class="card-top"><span>ECONOMY</span><code>MoneyManager.cs</code></div>
+          <h3>Geldsystem</h3>
+          <p>Lädt, speichert, addiert und entfernt das Geld des Spielers. Käufe laufen über diesen Manager.</p>
+          <div class="tag-row"><span>Save Data</span><span>Economy</span></div>
+        </article>
+
+        <article class="system-card yellow" data-search="upgrade manager speed acceleration handling tuning">
+          <div class="card-top"><span>GARAGE</span><code>UpgradeManager.cs</code></div>
+          <h3>Fahrzeug-Upgrades</h3>
+          <p>Verwaltet Upgrade-Stufen und Kosten separat für jedes Auto und überträgt Boni ins Rennen.</p>
+          <div class="tag-row"><span>Stats</span><span>Progression</span></div>
+        </article>
+
+        <article class="system-card cyan" data-search="lobby ui garage fahrzeuge kaufen buttons">
+          <div class="card-top"><span>UI</span><code>LobbyUI.cs</code></div>
+          <h3>Garage & Auswahl</h3>
+          <p>Zeigt Fahrzeuge, Preise, Performance-Werte und Kaufstatus an und steuert die Car-Slot-Buttons.</p>
+          <div class="tag-row"><span>Interface</span><span>Car Shop</span></div>
+        </article>
+
+        <article class="system-card magenta" data-search="race manager distance rennen schwierigkeit score">
+          <div class="card-top"><span>RACE</span><code>RaceManager2.cs</code></div>
+          <h3>Rennablauf</h3>
+          <p>Liefert unter anderem die gefahrene Distanz, die wiederum Schwierigkeit und Verkehrsmenge beeinflusst.</p>
+          <div class="tag-row"><span>Distance</span><span>Game Loop</span></div>
+        </article>
+
+        <article class="system-card yellow featured-card" data-search="traffic spawner verkehr autos monster truck collider">
+          <div class="card-top"><span>TRAFFIC</span><code>TrafficSpawner2.cs</code></div>
+          <h3>Dynamischer Verkehr</h3>
+          <p>Spawnt Autos, bewegt sie zum Spieler, erhöht die Schwierigkeit und kümmert sich um Collider und Audio.</p>
+          <a href="#traffic">Im Detail ansehen →</a>
+        </article>
+      </div>
+      <p class="no-results" id="noResults" hidden>Kein passendes System gefunden.</p>
+    </section>
+
+    <section class="section traffic-section" id="traffic">
+      <div class="traffic-heading">
+        <div>
+          <p class="eyebrow">SCRIPT DEEP DIVE</p>
+          <h2>TrafficSpawner2</h2>
+          <p>
+            Der Verkehrsspawner ist das Herz der Hindernisse im Rennen. Er erzeugt
+            Fahrzeuge, skaliert die Schwierigkeit und räumt alte Objekte wieder auf.
+          </p>
+        </div>
+        <div class="file-badge">
+          <span>C#</span>
+          <code>Assets/Scripts/Scripts/<br>TrafficSpawner2.cs</code>
+        </div>
+      </div>
+
+      <div class="traffic-layout">
+        <aside class="traffic-nav" aria-label="TrafficSpawner Kapitel">
+          <button class="traffic-tab active" data-panel="flow">01 / Ablauf</button>
+          <button class="traffic-tab" data-panel="spawn">02 / Spawning</button>
+          <button class="traffic-tab" data-panel="difficulty">03 / Schwierigkeit</button>
+          <button class="traffic-tab" data-panel="collision">04 / Collider</button>
+          <button class="traffic-tab" data-panel="cleanup">05 / Aufräumen</button>
+        </aside>
+
+        <div class="traffic-panels">
+          <article class="traffic-panel active" id="panel-flow">
+            <p class="panel-index">01 — ABLAUF</p>
+            <h3>Vom Start bis zum Despawn</h3>
+            <div class="flow-chart">
+              <div><b>START</b><span>Spuren vorbereiten</span></div>
+              <i>↓</i>
+              <div><b>WAIT</b><span>Zufälliges Intervall</span></div>
+              <i>↓</i>
+              <div><b>SPAWN</b><span>Prefab + Spur wählen</span></div>
+              <i>↓</i>
+              <div><b>UPDATE</b><span>Auto zum Spieler bewegen</span></div>
+              <i>↓</i>
+              <div><b>DESPAWN</b><span>Hinter Spieler löschen</span></div>
+            </div>
+          </article>
+
+          <article class="traffic-panel" id="panel-spawn">
+            <p class="panel-index">02 — SPAWNING</p>
+            <h3>Wie ein Verkehrsauto entsteht</h3>
+            <ol class="detail-list">
+              <li><span>1</span><div><b>Zufällige Spur</b><p>Eine X-Position wird aus <code>laneLeft</code> und <code>laneRight</code> gewählt.</p></div></li>
+              <li><span>2</span><div><b>Zufälliges Prefab</b><p>Ein Fahrzeug aus der Liste <code>trafficPrefabs</code> wird ausgewählt.</p></div></li>
+              <li><span>3</span><div><b>Position & Größe</b><p>Das Auto erscheint bei <code>spawnZ</code>, wird gedreht und an die Straße gesetzt.</p></div></li>
+              <li><span>4</span><div><b>Komponenten</b><p>Collider, Rigidbody, TrafficMarker und optional Doppler-Audio werden vorbereitet.</p></div></li>
+            </ol>
+          </article>
+
+          <article class="traffic-panel" id="panel-difficulty">
+            <p class="panel-index">03 — SCHWIERIGKEIT</p>
+            <h3>Das Rennen zieht das Tempo an</h3>
+            <div class="meter-list">
+              <div>
+                <div><span>Spawn-Häufigkeit</span><b>steigt mit Distanz</b></div>
+                <div class="meter"><span style="width: 78%"></span></div>
+              </div>
+              <div>
+                <div><span>Annäherungsgeschwindigkeit</span><b>bis +90</b></div>
+                <div class="meter magenta-meter"><span style="width: 88%"></span></div>
+              </div>
+              <div>
+                <div><span>Ab 3.000 Metern</span><b>2× Traffic</b></div>
+                <div class="meter yellow-meter"><span style="width: 100%"></span></div>
+              </div>
+            </div>
+            <pre><code>difficultyBonus =
+    distance / 100f
+    * difficultySpeedPer100Meters;</code></pre>
+          </article>
+
+          <article class="traffic-panel" id="panel-collision">
+            <p class="panel-index">04 — COLLIDER</p>
+            <h3>Warum der Monstertruck jetzt richtig kollidiert</h3>
+            <div class="collision-demo">
+              <div class="truck-shape">
+                <span class="wheel left-wheel"></span>
+                <span class="wheel right-wheel"></span>
+                <span class="bounds-label">FULL BOUNDS COLLIDER</span>
+              </div>
+              <p>
+                Beim Monstertruck werden die kleinen ursprünglichen Collider deaktiviert.
+                Danach berechnet das Script die sichtbaren Gesamtgrenzen und erzeugt daraus
+                einen einzigen großen <code>BoxCollider</code>, der auch die Reifen umfasst.
+              </p>
+            </div>
+          </article>
+
+          <article class="traffic-panel" id="panel-cleanup">
+            <p class="panel-index">05 — AUFRÄUMEN</p>
+            <h3>Keine endlose Objekt-Sammlung</h3>
+            <div class="cleanup-grid">
+              <div><span>AUTO VORBEI</span><b>despawnZ erreicht</b><p>Objekt wird zerstört und aus <code>activeCars</code> entfernt.</p></div>
+              <div><span>BUFF AKTIV</span><b>DeleteAllCars()</b><p>Entfernt alle Fahrzeuge und verbleibenden TrafficMarker.</p></div>
+              <div><span>SCENE ENDE</span><b>OnDestroy()</b><p>Räumt alle noch registrierten Verkehrsautos auf.</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="parameter-board">
+        <div>
+          <p class="eyebrow">INSPECTOR CHEAT SHEET</p>
+          <h3>Wichtige Parameter</h3>
+        </div>
+        <dl>
+          <div><dt>spawnZ</dt><dd>Wo neue Autos vor dem Spieler erscheinen</dd></div>
+          <div><dt>despawnZ</dt><dd>Ab welcher Position alte Autos gelöscht werden</dd></div>
+          <div><dt>min/maxSpawnInterval</dt><dd>Zeitspanne zwischen zwei Fahrzeugen</dd></div>
+          <div><dt>difficultySpeedPer100Meters</dt><dd>Zusätzliche Geschwindigkeit pro 100 Meter</dd></div>
+          <div><dt>monsterTruckColliderPadding</dt><dd>Zusätzlicher Rand um die Monstertruck-Hitbox</dd></div>
+          <div><dt>trafficPrefabs</dt><dd>Liste aller Fahrzeuge, die erscheinen dürfen</dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand compact">
+      <span class="brand-mark">R</span>
+      <strong>RetroRPM</strong>
+    </div>
+    <p>Projektübersicht · Unity 6 · Universal Render Pipeline</p>
+    <a href="#home">Nach oben ↑</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
